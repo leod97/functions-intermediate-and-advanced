@@ -1,0 +1,151 @@
+# provided input
+num_apples = 11
+num_people = 2 
+# answer to this input: 12, 4
+def divide_apples(num_apples,num_people):
+    apples_each=int(num_apples/num_people)
+    apples_left=int(num_apples%num_people)
+    return apples_each, apples_left
+divide_apples(num_apples,num_people)
+
+
+
+
+
+
+
+# provided inputs
+num_seconds1 = 62589 
+# answer to this input: 17, 23, 9
+
+num_seconds2 = 10000 
+# answer to this input: 2, 46, 40
+
+def seconds_to_hour_minute(num_seconds):
+    hour=int(num_seconds/3600)
+    minute=int((num_seconds-hour*3600)/60)
+    second=int(num_seconds-hour*3600-minute*60)
+    return hour,minute,second 
+seconds_to_hour_minute(num_seconds2)
+
+
+
+
+
+
+
+
+# provided inputs
+x = 7
+y = 9
+do_max1 = True 
+# answer to this input: 9
+
+do_max2 = False 
+# answer to this input: 7
+
+def max_or_min(x,y,do_max=True):
+    if do_max==True:
+        return max(x,y)
+    else:
+        return min (x,y)
+max_or_min(x,y)
+
+
+
+
+
+
+# provided inputs
+csv_filename = 'users.csv'
+num_rows1 = 1 
+# answer to this input: [['id', 'email', 'name', 'address']]
+
+num_rows2 = 2 
+# answer to this input: [['id', 'email', 'name', 'address'], ['1', 'lisa.king@flores.org', 'Lisa King', '5030 Hall Locks Suite 936 Port Tiffanyberg SC 92208']]
+
+from csv import reader
+
+def read_partial_csv(csv_filename,num_rows=0):
+    opened_file = open(csv_filename)
+    read_file = reader(opened_file)
+    rows=[]                 
+    for row in read_file:
+        if num_rows==0 or len(rows)+1<=num_rows:
+                       rows.append(row)
+    return rows
+                     
+
+read_partial_csv(csv_filename,num_rows=2)
+
+
+
+
+
+
+
+
+# provided input
+values = [1] 
+# answer to this input: 3, 1
+
+def most_least_frequent(values):
+    for i in range (len(values)):
+        values[i]=int(values[i])
+    count_most=None
+    count_least=None
+    
+    for i in values:
+        
+        curr_freq=values.count(i)
+        if count_most is None or curr_freq>count_most:
+            count_most=curr_freq
+        if count_least is None or curr_freq < count_least:
+            count_least=curr_freq
+    
+    return count_most,count_least
+
+print(most_least_frequent(values))
+
+
+
+
+
+# provided input
+values1 = [10, 20, 30, 10, 30, 10] 
+# answer to this input: [10], 3, [20], 1
+
+values2 = [1, 1, 1, 2, 2, 2, 3, 3, 4, 5, 6] 
+# answer to this input: [1, 2], 3, [4, 5, 6], 1
+
+
+def most_least_frequent_all(values):
+    for i in range (len(values)):
+        values[i]=int(values[i])
+    count_most=None
+    count_least=None
+    count_most_least=[]
+    L_most=[]
+    L_least=[]
+    for i in values:
+        
+        curr_freq=values.count(i)
+        if count_most is None or curr_freq>count_most:
+            count_most=curr_freq
+        if count_least is None or curr_freq < count_least:
+            count_least=curr_freq
+            
+    count_most_least.append(count_most)
+    count_most_least.append(count_least)
+    
+    for v in values:
+        curr_freq=values.count(v)
+        if curr_freq==count_most and v not in L_most:
+            L_most.append(v)
+        if curr_freq==count_least and v not in L_least:
+            L_least.append(v)
+    return L_most,count_most_least[0],L_least,count_most_least[1]
+
+    
+print(most_least_frequent_all(values2))   
+

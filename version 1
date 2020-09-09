@@ -1,7 +1,7 @@
 # provided input
 num_apples = 11
 num_people = 2 
-# answer to this input: 12, 4
+# answer to this input: 5,1
 def divide_apples(num_apples,num_people):
     apples_each=int(num_apples/num_people)
     apples_left=int(num_apples%num_people)
